@@ -111,7 +111,7 @@ class UtmCookie
         // utm from _COOKIE
         $utmCookieFilter = filter_var(
             json_decode((string) filter_input(INPUT_COOKIE, $this->utmCookieName), true),
-            FILTER_SANITIZE_STRING,
+            FILTER_UNSAFE_RAW,
             FILTER_REQUIRE_ARRAY
         );
         if (!\is_array($utmCookieFilter)) {
@@ -122,11 +122,11 @@ class UtmCookie
         $utmGetFilter = filter_input_array(
             INPUT_GET,
             [
-                'utm_campaign' => FILTER_SANITIZE_STRING,
-                'utm_medium' => FILTER_SANITIZE_STRING,
-                'utm_source' => FILTER_SANITIZE_STRING,
-                'utm_term' => FILTER_SANITIZE_STRING,
-                'utm_content' => FILTER_SANITIZE_STRING,
+                'utm_campaign' => FILTER_UNSAFE_RAW,
+                'utm_medium' => FILTER_UNSAFE_RAW,
+                'utm_source' => FILTER_UNSAFE_RAW,
+                'utm_term' => FILTER_UNSAFE_RAW,
+                'utm_content' => FILTER_UNSAFE_RAW,
             ]
         );
         if (!\is_array($utmGetFilter)) {
@@ -153,7 +153,7 @@ class UtmCookie
      */
     public function onKernelRequest($event)
     {
-        if (!$event->isMasterRequest()) {
+        if (!$event->isMainRequest()) {
             return;
         }
 
