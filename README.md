@@ -12,7 +12,7 @@ Documentation
 ### Installation
 
 ```
-$ composer require tattali/utm-cookie-bundle
+$ composer require 7mat7/utm-cookie-bundle
 ```
 
 ### Usage
